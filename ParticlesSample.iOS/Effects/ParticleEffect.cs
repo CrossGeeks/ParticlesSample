@@ -56,15 +56,20 @@ namespace ParticlesSample.iOS.Effects
 
                
                 control.Layer.AddSublayer(emitterLayer);
+
+                if (mode == ParticlesSample.Effects.EmitMode.OneShot)
+                {
                     Task.Delay(1).ContinueWith(t => {
 
                         Device.BeginInvokeOnMainThread(() =>
                         {
                             emitterLayer.SetValueForKeyPath(NSNumber.FromInt32(0), new NSString("emitterCells.pEmitter.birthRate"));
-                          
+
                         });
 
                     });
+                }
+               
             }); 
         }
         protected override void OnAttached()
